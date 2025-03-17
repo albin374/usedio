@@ -1,0 +1,162 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #f3f9f9, #e3f2fd);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.payment-container {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Title and Price */
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.price {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Payment Methods */
+.payment-methods h2 {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.payment-methods label {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+    cursor: pointer;
+    text-align: left;
+}
+
+.payment-methods input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Complete Payment Button */
+button[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+/* Back Button Styles */
+.back-button {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+.back-button:active {
+    background-color: #b71c1c;
+    transform: scale(1);
+}
+
+/* Responsive Design for Back Button */
+@media (max-width: 768px) {
+    .back-button {
+        top: 10px;
+        left: 10px;
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+/* Additional Styling for UPI Input */
+#upi-input-container {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#upi-input-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+#upi-id {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .payment-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    button[type="submit"] {
+        font-size: 16px;
+        padding: 10px;
+    }
+}

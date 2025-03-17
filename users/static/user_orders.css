@@ -1,0 +1,79 @@
+/* General Styles */
+.container {
+    margin-top: 30px;
+  }
+  
+  /* Card Styles */
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Row and Column Styles for Layout */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .col-md-3 {
+    flex: 1;
+    max-width: 22%;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .col-md-3 {
+      max-width: 48%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .col-md-3 {
+      max-width: 100%;
+    }
+  }
+  
+  /* Badge Styles */
+  .badge {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+  
+  .bg-success {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .bg-primary {
+    background-color: #007bff;
+    color: white;
+  }
+  

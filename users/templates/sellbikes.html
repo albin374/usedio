@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'sell.css' %}">
+    <title>Sell Your Bike</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Sell Your Bike</h2>
+
+        <!-- Form for selling a bike -->
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Product Name -->
+            <div class="form-group">
+                <label for="name">Product Name:</label>
+                <input type="text" name="name" required placeholder="Enter bike name">
+            </div>
+
+            <!-- Model -->
+            <div class="form-group">
+                <label for="model">Model:</label>
+                <input type="text" name="model" required placeholder="Enter model">
+            </div>
+
+            <!-- Price -->
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="text" name="price" required placeholder="Enter price">
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea name="description" required placeholder="Enter a description of the bike"></textarea>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" name="image">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- Messages -->
+        {% if messages %}
+            <div class="messages">
+                <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

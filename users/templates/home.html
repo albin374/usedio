@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'homestyle.css' %}">
+</head>
+<body>
+    <div class="home">
+        <div class="navbar">
+            <img src="{% static 'images/logo3.jpg' %}" class="logo">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                <li class="sell-products">
+                    <a href="#">Sell Products</a>
+                    <div class="submenu">
+                        <a href="{% url 'sell_product' category_name='mobiles' %}">Mobile phones</a>
+                        <a href="{% url 'sell_product' category_name='cars' %}">Cars</a>
+                        <a href="{% url 'sell_product' category_name='bikes' %}">Bikes</a>
+                        <a href="{% url 'sell_product' category_name='laptops' %}">Laptops</a>
+                    </div>
+                    
+                </li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'user_purchased_products' %}">My Orders</a></li>
+                <li><a href="{% url 'user_added_products' %}">My Products</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                <li class="sell-products">
+                    <a href="#">Sell Products</a>
+                    <div class="submenu">
+                        <a href="{% url 'login' %}">Mobile phones</a>
+                        <a href="{% url 'login' %}">Cars</a>
+                        <a href="{% url 'login' %}">Bikes</a>
+                        <a href="{% url 'login' %}">Laptops</a>
+                    </div>
+                </li>
+                <li><a href="#">About</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        
+        <div class="container">
+            <a href="{% url 'product_listing' category_name='mobiles' %}" class="buy buy1">
+                <div>
+                    <h5>MOBILE PHONES</h5>
+                </div>
+            </a>
+            <a href="{% url 'product_listing' category_name='cars' %}" class="buy buy2">
+                <div>
+                    <h5>CARS</h5>
+                </div>
+            </a>
+            <a href="{% url 'product_listing' category_name='bikes' %}" class="buy buy3">
+                <div>
+                    <h5>BIKES</h5>
+                </div>
+            </a>
+            <a href="{% url 'product_listing' category_name='laptops' %}" class="buy buy4">
+                <div>
+                    <h5>LAPTOPS</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Products</title>
+    <style>
+        /* Basic styling for the container */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Title styling */
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Product list styling */
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* Individual product styling */
+        .product {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        /* Image styling (Fixed size) */
+        .product img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* Styling for product details */
+        .product h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .product p {
+            font-size: 1rem;
+            margin: 5px 0;
+            color: #555;
+        }
+
+        /* Status styling */
+        .product p.status {
+            font-weight: bold;
+            color: green;
+        }
+
+        .product p.status.sold {
+            color: red;
+        }
+
+        /* Button styling */
+        .product .actions {
+            margin-top: 15px;
+        }
+
+        .product .actions button {
+            margin: 5px;
+            padding: 8px 12px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product .actions button.delete {
+            background-color: #dc3545;
+        }
+
+        .product .actions button:hover {
+            opacity: 0.9;
+        }
+
+        /* Back button styling */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        }
+    </style>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this product?");
+        }
+    </script>
+</head>
+<body>
+    <!-- Back Button -->
+    <a href="{% url 'home' %}" class="back-button">
+        ← Back to Home
+    </a>
+
+    <div class="container">
+        <!-- Page Title -->
+        <h2>Your Products</h2>
+        
+        <!-- Product List -->
+        {% if user_products %}
+            <ul class="product-list">
+                {% for product in user_products %}
+                    <li class="product">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% endif %}
+                        <h3>{{ product.name }}</h3>
+                        <p class="category">Category: {{ product.category.name }}</p>
+                        <p>Price: ${{ product.price }}</p>
+                        {% if product.sold %}
+                            <p class="status sold">Sold</p>
+                        {% else %}
+                            <p class="status">Available</p>
+                        {% endif %}
+                        <div class="actions">
+                            <form action="{% url 'update_product' product.product_id %}" method="get" style="display: inline;">
+                                <button type="submit">Update</button>
+                            </form>
+                            <form action="{% url 'delete_product' product.product_id %}" method="post" style="display: inline;" onsubmit="return confirmDelete();">
+                                {% csrf_token %}
+                                <button type="submit" class="delete">Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <!-- Message for No Products -->
+            <div class="no-products-message">
+                <p>You haven't added any products yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

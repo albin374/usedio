@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'payment.css' %}">
+    <title>Payment for {{ product.name }}</title>
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-button">← Back</a>
+    <div class="payment-container">
+        <h1>Payment for {{ product.name }}</h1>
+        <p>Price: <span class="price">{{ product.price }}</span></p>
+
+        <form method="POST" id="payment-form">
+            {% csrf_token %}
+
+            <!-- Payment Method Options -->
+            <div class="payment-methods">
+                <h2>Select Payment Method:</h2>
+                <label>
+                    <input type="radio" name="payment_method" value="credit_card" required>
+                    Credit Card
+                </label>
+                <label>
+                    <input type="radio" name="payment_method" value="debit_card">
+                    Debit Card
+                </label>
+                <label>
+                    <input type="radio" name="payment_method" value="upi">
+                    UPI
+                </label>
+                <label>
+                    <input type="radio" name="payment_method" value="net_banking">
+                    Net Banking
+                </label>
+                <label>
+                    <input type="radio" name="payment_method" value="wallet">
+                    Wallet (e.g., PayTM, PhonePe)
+                </label>
+            </div>
+
+            <!-- UPI-Specific Input -->
+            <div id="upi-input-container" style="display: none;">
+                <label for="upi-id">Enter your UPI ID:</label>
+                <input type="text" id="upi-id" name="upi_id" placeholder="example@upi">
+            </div>
+
+            <!-- Complete Payment Button -->
+            <button type="submit">Complete Payment</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript for handling UPI-specific input
+        const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
+        const upiInputContainer = document.getElementById('upi-input-container');
+
+        paymentMethods.forEach(method => {
+            method.addEventListener('change', () => {
+                if (method.value === 'upi') {
+                    upiInputContainer.style.display = 'block'; // Show UPI input
+                } else {
+                    upiInputContainer.style.display = 'none'; // Hide UPI input
+                }
+            });
+        });
+    </script>
+</body>
+</html>

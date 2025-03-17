@@ -1,0 +1,11 @@
+{% extends "admin/change_list.html" %}
+
+{% load static %}  <!-- Load static files here -->
+
+{% block content %}
+    <!-- Link to your custom stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/admin_styles.css' %}">
+    
+    <!-- Display the rest of the page as usual -->
+    {{ block.super }}
+{% endblock %}
